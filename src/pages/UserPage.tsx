@@ -12,6 +12,7 @@ type Users = {
 
 export default function UserPage() {
   const [users, setUsers] = useState<Users[]>([]);
+  const [loading, setLoading] = useState(true);
 
   async function getUsuarios() {
     try {
@@ -21,6 +22,8 @@ export default function UserPage() {
       setUsers(json);
     } catch (e) {
       console.error("Ocorreu um erro", e);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -29,12 +32,19 @@ export default function UserPage() {
     getUsuarios();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <h1 className="text-xl font-bold text-slate-900">Carregando...</h1>
+      </div>
+    );
+  }
+
   return (
     <main className="flex flex-col px-14 py-7 w-screen">
       <div className="flex flex-col my-12">
         <h2 className="text-slate-900 text-2xl font-bold">Usuário</h2>
         <p className="text-slate-900 text-md">Gerencie os usuários aqui</p>
-
         <button className="self-end bg-slate-900 rounded-md text-slate-50 p-2 cursor-pointer hover:bg-slate-700 hover:scale-110 hover:shadow-2xl transition">
           + Novo usuário
         </button>
@@ -54,7 +64,7 @@ export default function UserPage() {
 
         <tbody className="divide-y divide-slate-100">
           <tr>
-            <td className="p-3">Nome exemplo</td>
+            <td className="p-3">{users[0].nome}</td>
             <td className="p-3">Email exemplo</td>
             <td className="p-3">Data exemplo</td>
             <td className="p-3">Data exemplo 2</td>
