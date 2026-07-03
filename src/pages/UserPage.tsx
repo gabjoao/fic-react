@@ -63,17 +63,20 @@ export default function UserPage() {
         </thead>
 
         <tbody className="divide-y divide-slate-100">
-          <tr>
-            <td className="p-3">{users[0].nome}</td>
-            <td className="p-3">Email exemplo</td>
-            <td className="p-3">Data exemplo</td>
-            <td className="p-3">Data exemplo 2</td>
-            <td className="p-3">Admin</td>
-            <td className="p-3 flex flex-row gap-4 cursor-pointer">
-              <BiPencil size={18} color="blue"></BiPencil>
-              <BiTrash color="red" size={18}></BiTrash>
-            </td>
-          </tr>
+          {users.map((u) => (
+            <tr key={u.id}>
+              <td className="p-3">{u.nome}</td>
+              <td className="p-3">{u.email}</td>
+              {/*TODO: FORMATAÇÃO DA DATA */}
+              <td className="p-3">{u.createdAt}</td>
+              <td className="p-3">{u.updatedAt}</td>
+              <td className="p-3">{u.tipoAcesso}</td>
+              <td className="p-3 flex flex-row gap-4 cursor-pointer">
+                <BiPencil size={18} color="blue" />
+                <BiTrash color="red" size={18} />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </main>
