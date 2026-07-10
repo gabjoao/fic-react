@@ -1,5 +1,6 @@
 import { BiBook, BiFolder } from "react-icons/bi";
 import { PiUserCircleDuotone } from "react-icons/pi";
+import { NavLink } from "react-router";
 
 export default function SideBar() {
   return (
@@ -7,26 +8,35 @@ export default function SideBar() {
       <h1 className="font-bold text-3xl text-center">FIC</h1>
 
       <nav className="flex flex-col gap-5 mt-9">
-        <div className="flex flex-row items-center gap-3 cursor-pointer">
+        <NavLink
+          to={"/"}
+          className="flex flex-row items-center gap-3 cursor-pointer"
+        >
           <PiUserCircleDuotone size={28} />
           <p className="text-lg font-medium hover:underline transition hover:font-bold">
             Usuários
           </p>
-        </div>
+        </NavLink>
 
-        <div className="flex flex-row items-center gap-3 cursor-pointer">
+        <NavLink
+          to={"/categorias"}
+          className="flex flex-row items-center gap-3 cursor-pointer"
+        >
+          <BiFolder size={28} />
+          <p className="text-lg font-medium hover:underline transition hover:font-bold">
+            Categorias
+          </p>
+        </NavLink>
+
+        <NavLink
+          to={"/cursos"}
+          className="flex flex-row items-center gap-3 cursor-pointer"
+        >
           <BiBook size={28} />
           <p className="text-lg font-medium hover:underline transition hover:font-bold">
             Cursos
           </p>
-        </div>
-
-        <div className="flex flex-row items-center gap-3 cursor-pointer">
-          <BiFolder size={28} />
-          <p className="text-lg font-medium hover:underline transition hover:font-bold">
-            Categoria
-          </p>
-        </div>
+        </NavLink>
       </nav>
     </aside>
   );
